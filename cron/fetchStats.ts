@@ -24,6 +24,7 @@ const getPlayers = async () => {
   console.log(`Found ${codes.length} player codes`)
   const allData = codes.map(code => getPlayerDataThrottled(code))
   const results = await Promise.all(allData.map(p => p.catch(e => e)));
+  console.log(results)
   const validResults = results.filter(result => !(result instanceof Error));
   const unsortedPlayers = validResults
     .filter((data: any) => data?.data?.getConnectCode?.user)
